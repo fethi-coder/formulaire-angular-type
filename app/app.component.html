@@ -1,0 +1,97 @@
+<h1>formulaire type en angular</h1>
+
+
+
+<form (ngSubmit)="onSubmit()"  [formGroup]="form" class="form-group" novalidate>
+
+  <label id="validationCustom01" class="form-label">Prénom</label>
+  <input 
+  type="text" 
+  id="validationCustom01"
+  name="user_name" 
+  class="form-control" 
+  placeholder="Prénom" 
+  formControlName="name"
+  #name
+  >
+  <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
+      <div *ngIf="form.controls['name'].errors" class="alert alert-danger">
+          Prénom requis
+      </div>
+  </div>
+
+
+
+  <label for="lastname">Nom</label>
+  <input 
+  type="text" 
+  id="lastname" 
+  name="user_lastname" 
+  class="form-control" 
+  placeholder="Nom"
+  formControlName="lastname" 
+  required
+  #lastname>
+  <div *ngIf="form.controls['lastname'].invalid && (form.controls['lastname'].dirty || form.controls['name'].touched)">
+      <div *ngIf="form.controls['lastname'].errors"  class="alert alert-danger">
+          nom requis
+      </div>
+  </div>
+
+
+
+  <label for="mail">E-mail</label>
+  <input 
+  type="email" 
+  id="mail" 
+  name="user_mail" 
+  class="form-control" 
+  placeholder=" mail" 
+  formControlName="email"
+  required>
+  <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['name'].touched)">
+      <div *ngIf="form.controls['email'].errors"  class="alert alert-danger">
+          E-mail requis
+      </div>
+  </div>
+
+  <label for="password">Mot de passe</label>
+  <input 
+  type="password" 
+  id="password" 
+  name="user_password" 
+  placeholder="Mot de passe" 
+  formControlName="mdp" required
+  minlength="3"
+  class="form-control">
+  <div *ngIf="form.controls['mdp'].invalid && (form.controls['mdp'].dirty || form.controls['mdp'].touched)">
+      <div *ngIf="form.controls['mdp'].errors"  class="alert alert-danger">
+          Mot de passe requis
+      </div>
+  </div>
+
+  <label for="confirmation">Confirmation de Mot de passe</label>
+  <input 
+  type="password" 
+  id="confirmation" 
+  name="user_confirmation" 
+  required 
+  placeholder="Confirmer ton Mot de passe"
+  formControlName="confirme" 
+  minlength="3"
+  class="form-control">
+  <div *ngIf="form.controls['confirme'].invalid && (form.controls['confirme'].dirty || form.controls['confirme'].touched)">
+      <div *ngIf="form.controls['confirme'].errors"  class="alert alert-danger">
+          Confirmation de mot de passe
+      </div>
+  </div>
+
+<div class="btnGroup">
+  <button type="submit"  class="btn btn-primary">Valider</button>
+  <button type="reset" (click)="errorAlertBox()" class="btn btn-outline-danger">reset</button>
+</div>  
+</form>
+
+<pre style="text-align: center">retour value : {{form.value|json}}</pre>
+
+
